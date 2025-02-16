@@ -1,0 +1,17 @@
+body {
+    background-color: rgb(224, 254, 255);
+}
+
+h1 {
+    color: blue;
+    text-align: center;
+}
+
+p {
+    font-size: 20px;
+    color: darkblue;
+}
+h3 {
+    font-size: 40px;
+    color: darkblue;
+}
