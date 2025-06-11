@@ -5,7 +5,7 @@ const { createPlat, getPlats, deletePlat, putPlat } = require('../controllers/pl
 router.post('/', createPlat); // Créer un plat
 router.get('/', getPlats); // Lister tous les plats
 router.delete('/:id', deletePlat); // Supprimer un plat
-router.put('/:id', putPlat);
+router.put('/:id', putPlat); // Mettre à jour un plat
 
 
 module.exports = router;
