@@ -15,5 +15,4 @@ app.use('/api/menus', menuRoutes);
 app.use('/api/ingredients', ingredientRoutes);
 app.use('/api/plats', platRoutes);
 
-
 module.exports = app;
