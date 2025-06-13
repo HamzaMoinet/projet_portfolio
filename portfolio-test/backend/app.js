@@ -20,5 +20,4 @@ app.use('/api/admin/menus', auth, isAdmin, menuRoutes);
 app.use('/api/admin/ingredients', auth, isAdmin, ingredientRoutes);
 app.use('/api/admin/plats', auth, isAdmin, platRoutes);
 
-
 module.exports = app;
