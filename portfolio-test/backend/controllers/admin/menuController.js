@@ -1,6 +1,6 @@
 // Contrôleur Menu (à compléter)
-const Menu = require('../models/Menu');
-const Plat = require('../models/Plat');
+const Menu = require('../../models/Menu');
+const Plat = require('../../models/Plat');
 // Obtenir tous les menus
 exports.getMenus = async (req, res) => {
   try {

@@ -1,5 +1,5 @@
-const Plat = require('../models/Plat');
-const Ingredient = require('../models/Ingredient');
+const Plat = require('../../models/Plat');
+const Ingredient = require('../../models/Ingredient');
 
 // Créer un plat
 exports.createPlat = async (req, res) => {

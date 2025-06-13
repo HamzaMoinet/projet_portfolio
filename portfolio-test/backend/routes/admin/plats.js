@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { createPlat, getPlats, deletePlat, putPlat } = require('../controllers/platController');
+const { createPlat, getPlats, deletePlat, putPlat } = require('../../controllers/admin/platController');
 
 router.post('/', createPlat); // Créer un plat
 router.get('/', getPlats); // Lister tous les plats
