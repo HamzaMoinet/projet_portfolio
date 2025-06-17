@@ -1,6 +1,22 @@
 const jwt = require('jsonwebtoken');
 
 const SECRET = 'votre_secret_test'; // doit être identique partout
+/**
+ *
+ * @swagger
+ * components:
+ *  securitySchemes:
+ * BearerAuth:
+ * type: http
+ * scheme: bearer
+ * bearerFormat: JWT
+ * security:
+ * - BearerAuth: []
+ * tags:
+ * - name: Authentification
+ * description: Middleware pour l'authentification des utilisateurs
+ * description: |
+ */
 
 module.exports = function auth(req, res, next) {
   const authHeader = req.headers.authorization;

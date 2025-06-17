@@ -3,14 +3,19 @@ const User = require('../models/User');
 // Créer un utilisateur
 exports.createUser = async (req, res) => {
   try {
-    const { firstName, lastName, password, role } = req.body;
+    const { firstName, lastName, email, password, role } = req.body;
+    // Vérifier si un utilisateur avec le même prénom et nom existe déjà
+    const existingUser = await User.findOne({ firstName, lastName });
+    if (existingUser) {
+      return res.status(400).json({ error: 'Un utilisateur avec ce prénom et ce nom existe déjà.' });
+    }
     if (role === 'admin') {
       const adminExists = await User.findOne({ role: 'admin' });
       if (adminExists) {
         return res.status(400).json({ error: 'Un administrateur existe déjà.' });
       }
     }
-    const user = new User({ firstName, lastName, password, role });
+    const user = new User({ firstName, lastName, email, password, role });
     await user.save();
     res.status(201).json(user);
   } catch (err) {

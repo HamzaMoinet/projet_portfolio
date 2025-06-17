@@ -1,6 +1,21 @@
 const jwt = require('jsonwebtoken');
 const { SECRET } = require('./auth');
-
+/**
+ * @swagger
+ * components:
+ *   securitySchemes:
+ *     BearerAuth:
+ *       type: http
+ *       scheme: bearer
+ *       bearerFormat: JWT
+ *
+ * security:
+ *   - BearerAuth: []
+ *
+ * tags:
+ *   - name: Admin
+ *     description: Accès réservé à l’administrateur
+ */
 // Middleware pour vérifier si l'utilisateur est admin
 module.exports = function isAdmin(req, res, next) {
   // On suppose que le middleware auth a déjà mis req.user
