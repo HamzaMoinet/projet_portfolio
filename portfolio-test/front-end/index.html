@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>L'as du Brioché</title>
+		<link rel="stylesheet" href="styles.css">
+		<link rel="icon" type="image/png" href="image/favicon.png">
+	</head>
+	<body id="home-page">
+		<header>
+			<nav>
+				<a href="index.html">Home</a>
+				<a href="./login.html"> Login</a>
+				<a href="./register.html"> Register</a>
+			</nav>
+		</header>
+		<script>
+fetch('http://localhost:3001/login', {
+  method: 'GET'
+})
+  .then(response => response.json())
+  .then(data => {
+    // Traitez les données ici
+    console.log(data);
+  });
+</script>
+	</body>
+</html>
