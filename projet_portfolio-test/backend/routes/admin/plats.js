@@ -10,7 +10,7 @@ const { createPlat, getPlats, deletePlat, putPlat } = require('../../controllers
  *       - Admin Plats
  *     responses:
  *       200:
- *         description: Liste des ingrédients
+ *         description: Liste des plats
  *         content:
  *           application/json:
  *             schema:
