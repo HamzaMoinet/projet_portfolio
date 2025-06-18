@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
   form.addEventListener('submit', async function(e) {
     e.preventDefault();
     errorDiv.textContent = '';
-    const firstName = form.elements['firstName'].value;
+    const firstName = form.elements['email'].value;
     const password = form.elements['password'].value;
 
     try {
