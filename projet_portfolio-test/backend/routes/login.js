@@ -45,7 +45,7 @@ router.post('/', async (req, res) => {
     return res.status(401).json({ error: 'Identifiants invalides' });
   }
   const token = jwt.sign({ id: user._id, role: user.role }, SECRET, { expiresIn: '1h' });
-  res.json({ token });
+  res.json({ token, role: user.role });
 });
 
 module.exports = router;
