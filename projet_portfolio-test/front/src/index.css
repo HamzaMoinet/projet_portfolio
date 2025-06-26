@@ -1,0 +1,14 @@
+body {
+  margin: 0;
+  font-family: 'Inter', Arial, sans-serif;
+  background: linear-gradient(135deg, #cb9305 0%, #deb10c 100%);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Inter', Arial, sans-serif;
+  font-weight: 700;
+}
+
+main {
+  min-height: 60vh;
+}
