@@ -22,6 +22,30 @@ const options = {
           bearerFormat: 'JWT',
         },
       },
+      schemas: {
+        Commande: {
+          type: 'object',
+          properties: {
+            _id: { type: 'string', description: 'ID de la commande' },
+            user: { type: 'string', description: 'ID de l’utilisateur' },
+            items: {
+              type: 'array',
+              items: {
+                type: 'object',
+                properties: {
+                  plat: { type: 'string', description: 'ID du plat' },
+                  type: { type: 'string', enum: ['plat', 'twister', 'boisson'] },
+                  name: { type: 'string' },
+                  price: { type: 'number' }
+                }
+              }
+            },
+            isMenu: { type: 'boolean', description: 'Commande menu ou non' },
+            total: { type: 'number', description: 'Prix total' },
+            createdAt: { type: 'string', format: 'date-time' }
+          }
+        }
+      }
     },
     security: [
       { BearerAuth: [] }
