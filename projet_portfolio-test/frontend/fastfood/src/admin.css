@@ -1,0 +1,15 @@
+/* Styles spécifiques à l'interface d'administration */
+
+.admin-header {
+  background: #9c8989;
+  color: #fff;
+}
+
+.admin-section {
+  background: #ebebeb;
+  border: 1px solid #fbbf24;
+  border-radius: 8px;
+  padding: 2rem;
+}
+
+/* Ajoute ici tes styles admin */
