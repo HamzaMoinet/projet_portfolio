@@ -7,7 +7,8 @@ import Register from "./pages/auth/Register"; // <-- Ajout ici
 import IngredientsPage from "./pages/admin/ingredients";
 import PlatsPage from "./pages/admin/plats";
 import AdminCommandes from "./pages/admin/commandes";
-import Plats from "./pages/home/plats";
+import Menus_home from "./pages/home/plats";
+import Menususer from "./pages/user/plats"; // <-- Ajout ici
 
 const AppRouter = () => (
   <BrowserRouter>
@@ -15,10 +16,11 @@ const AppRouter = () => (
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
-      <Route path="/menus" element={<Plats />} /> {/* Route vers la page plats */}
+      <Route path="/menus" element={<Menus_home />} />
 
       {/* Pages utilisateur */}
       <Route path="/user" element={<UserHome />} />
+      <Route path="/user/menus" element={<Menususer />} />
 
       {/* Pages admin */}
       <Route path="/admin" element={<AdminHome />} />

@@ -4,26 +4,17 @@ import { useLocation, useNavigate } from "react-router-dom";
 const Header = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const isAdmin = location.pathname.startsWith("/admin");
+  // const isAdmin = location.pathname.startsWith("/admin");
   const isLoggedIn = Boolean(localStorage.getItem("token"));
 
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    navigate("/");
-  };
+
 
   return (
     <header className="bg-[#030303] shadow-md py-4 px-8 flex items-center justify-between">
       <div className="flex items-center gap-2">
         <button
-          onClick={() => {
-            if (isLoggedIn) {
-              navigate("/user");
-            } else {
-              navigate("/");
-            }
-          }}
-          className="text-2x1 font-bold text-white bg-transparent border-none cursor-pointer p-0 m-0"
+          onClick={() => navigate("/")}
+          className="text-2xl font-bold text-white bg-transparent border-none cursor-pointer p-0 m-0"
           style={{ background: "none" }}
         >
           🍔L'as du brioché

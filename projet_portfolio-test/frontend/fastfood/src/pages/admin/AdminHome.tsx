@@ -1,4 +1,4 @@
-import Header from "@/components/Header";
+import Header from "@/components/HeaderAdmin";
 import Footer from "@/components/Footer";
 import Card from "@/components/ui/Card";
 import { useNavigate } from "react-router-dom";

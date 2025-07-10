@@ -1,0 +1,170 @@
+/* Style inspiré de la maquette Figma */
+.plats-figma-mockup {
+  min-height: 100vh;
+  background: #e65100;
+  padding: 40px 0 0 0;
+  font-family: 'Inter', Arial, sans-serif;
+}
+
+.plats-title {
+  color: #fff;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0 0 32px 60px;
+  letter-spacing: 1px;
+}
+
+.plats-section {
+  margin-bottom: 48px;
+}
+
+.plats-category {
+  color: #fff;
+  font-size: 1.7rem;
+  font-weight: 600;
+  margin: 0 0 24px 60px;
+}
+
+.plats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 32px;
+  padding: 0 60px;
+}
+
+.plats-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  min-height: 340px;
+  transition: transform 0.15s;
+}
+.plats-card:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 6px 24px rgba(0,0,0,0.13);
+}
+
+.plats-img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  background: #eee;
+}
+
+.plats-card-content {
+  padding: 18px 20px 16px 20px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.plats-card-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #222;
+}
+.plats-card-desc {
+  font-size: 0.98rem;
+  color: #666;
+  margin-bottom: 18px;
+}
+.plats-card-price {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #e65100;
+  margin-top: auto;
+}
+.plats-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  padding: 2rem 0;
+  background: #f9fafb;
+  min-height: 80vh;
+  width: auto;
+}
+
+.burger-bloc,
+.smash-bloc,
+.riz-bloc,
+.frites-bloc,
+.boissons-bloc,
+.dessert-bloc {
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 4px 24px rgba(1, 13, 24, 0.08);
+  padding: 2rem 1.5rem;
+  min-width: 250px;
+  max-width: 320px;
+  width: auto;
+  flex: 1 1 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.burger-bloc h2,
+.smash-bloc h2,
+.riz-bloc h2,
+.frites-bloc h2,
+.boissons-bloc h2,
+.dessert-bloc h2 {
+  color: #dea105;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.burger-bloc ul,
+.smash-bloc ul,
+.riz-bloc ul,
+.frites-bloc ul,
+.boissons-bloc ul,
+.dessert-bloc ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.burger-bloc li,
+.smash-bloc li,
+.riz-bloc li,
+.frites-bloc li,
+.boissons-bloc li,
+.dessert-bloc li {
+  background: #f1f5f9;
+  color: #222;
+  border-radius: 0.5rem;
+  padding: 0.7rem 1rem;
+  margin-bottom: 0.7rem;
+  font-size: 1.05rem;
+  text-align: left;
+  transition: background 0.2s;
+}
+
+.burger-bloc li:last-child,
+.smash-bloc li:last-child,
+.riz-bloc li:last-child,
+.frites-bloc li:last-child,
+.boissons-bloc li:last-child,
+.dessert-bloc li:last-child {
+  margin-bottom: 0;
+}
+
+.burger-bloc li:hover,
+.smash-bloc li:hover,
+.riz-bloc li:hover,
+.frites-bloc li:hover,
+.boissons-bloc li:hover,
+.dessert-bloc li:hover {
+  background: #ffe082;
+}

@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "@/components/Header";
+import Header from "@/components/HeaderUser";
 import Footer from "@/components/Footer";
 import "./plats.css";
 
@@ -71,7 +71,7 @@ const platsData = [
   }
 ];
 
-const Menus_home: React.FC = () => (
+const Menususer: React.FC = () => (
   <>
     <Header />
     <main className="plats-figma-mockup">
@@ -98,4 +98,4 @@ const Menus_home: React.FC = () => (
   </>
 );
 
-export default Menus_home;
+export default Menususer;
