@@ -26,6 +26,13 @@ const AdminHome = () => {
               image="https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=400&q=80"
             />
           </div>
+          <div onClick={() => navigate("/admin/commandes")} className="cursor-pointer hover:scale-105 transition-transform">
+            <Card
+              title="Commandes"
+              description="Gérez les commandes des clients."
+              image="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80"
+            />
+          </div>
         </div>
       </main>
       <Footer />

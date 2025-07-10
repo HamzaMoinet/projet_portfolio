@@ -1,0 +1,80 @@
+/* Style pour la page d'authentification (login/register) */
+.auth-container {
+  min-height: 100vh;
+  background: linear-gradient(120deg, #fef9c3 0%, #f1f5f9 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 0;
+}
+
+.auth-card {
+  background: #000000;
+  border-radius: 1rem;
+  box-shadow: 0 4px 24px rgba(144, 30, 30, 0.08);
+  padding: 2.5rem 2rem;
+  width: 100%;
+  max-width: 370px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.auth-title {
+  color: #dea105;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.auth-error {
+  color: #dc2626;
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.3rem;
+}
+
+.auth-btn {
+  background: #dea105;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  transition: background 0.2s;
+}
+
+.auth-btn:hover {
+  background: #e5750b;
+}
+.auth-link {
+  color: #dea105;
+  font-size: 1.00rem;
+  text-align: center;
+}
+
+.auth-form input {
+  background: #fff;
+  padding: 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  font-size: 1rem;
+  color: #000; /* Texte noir dans les champs */
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  color: #dea105; /* Labels jaunes comme le titre */
+  font-weight: 500;
+  font-size: 0.95rem;
+}

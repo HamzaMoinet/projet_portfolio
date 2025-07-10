@@ -1,0 +1,28 @@
+/* Styles pour la page admin ingredients */
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.checkbox-label input[type="checkbox"] {
+  width: auto;
+  margin-right: 8px;
+}
+
+.allergen-badge {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.allergen-badge.allergen {
+  background-color: #fef3c7;
+  color: #d97706;
+}
+
+.allergen-badge.no-allergen {
+  background-color: #d1fae5;
+  color: #059669;
+}
