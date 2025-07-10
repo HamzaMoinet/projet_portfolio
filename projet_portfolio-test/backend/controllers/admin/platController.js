@@ -5,13 +5,12 @@ const Ingredient = require('../../models/Ingredient');
 exports.createPlat = async (req, res) => {
   try {
     const { name, price, ingredients } = req.body;
-    // Si ingredients contient des noms, on les convertit en IDs
-    const ingredientDocs = await Ingredient.find({ name: { $in: ingredients } });
+    // On accepte maintenant un tableau d'IDs d'ingrédients
+    const ingredientDocs = await Ingredient.find({ _id: { $in: ingredients } });
     if (ingredientDocs.length !== ingredients.length) {
       return res.status(400).json({ error: "Un ou plusieurs ingrédients n'existent pas." });
     }
-    const ingredientIds = ingredientDocs.map(ing => ing._id);
-    const plat = new Plat({ name, price, ingredients: ingredientIds });
+    const plat = new Plat({ name, price, ingredients });
     await plat.save();
     res.status(201).json(plat);
   } catch (err) {
@@ -49,12 +48,11 @@ exports.putPlat = async (req, res) => {
   try {
     const { id } = req.params;
     const { name, price, ingredients } = req.body;
-    const ingredientDocs = await Ingredient.find({ name: { $in: ingredients } });
+    const ingredientDocs = await Ingredient.find({ _id: { $in: ingredients } });
     if (ingredientDocs.length !== ingredients.length) {
       return res.status(400).json({ error: "Un ou plusieurs ingrédients n'existent pas." });
     }
-    const ingredientIds = ingredientDocs.map(ing => ing._id);
-    const plat = await Plat.findByIdAndUpdate(id, { name, price, ingredients: ingredientIds }, { new: true });
+    const plat = await Plat.findByIdAndUpdate(id, { name, price, ingredients }, { new: true });
     if (!plat) {
       return res.status(404).json({ error: 'Plat non trouvé.' });
     }
