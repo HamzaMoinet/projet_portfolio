@@ -1,7 +1,7 @@
-import Header from "@/components/Header";
+import Header from "@/components/HeaderUser";
 import Footer from "@/components/Footer";
 import Card from "@/components/ui/Card";
-import Hero from "@/components/Hero";
+import Hero from "@/components/HeroUser";
 
 const plats = [
 	{

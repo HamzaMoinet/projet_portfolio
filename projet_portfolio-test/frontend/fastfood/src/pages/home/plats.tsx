@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "@/components/HeaderUser";
+import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import "./plats.css";
 
