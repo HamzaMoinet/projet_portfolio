@@ -4,9 +4,104 @@
 ## Description
 Ce projet est une application de gestion de fast-food avec une interface utilisateur (React/TypeScript) et un backend Node.js/Express/MongoDB. Il permet la gestion des menus, plats, commandes et utilisateurs (admin et client).
 
-## Structure du projet
-- **backend/** : API Express, modèles Mongoose, routes, contrôleurs, middleware, Swagger.
-- **frontend/fastfood/** : Application React, pages, composants, services API, styles.
+
+## Arborescence du projet
+```text
+projet_portfolio/
+├── README.md
+├── projet_portfolio-test/
+│   ├── backend/
+│   │   ├── app.js
+│   │   ├── package.json
+│   │   ├── server.js
+│   │   ├── swagger.js
+│   │   ├── controllers/
+│   │   │   ├── userController.js
+│   │   │   ├── admin/
+│   │   │   │   ├── ingredientController.js
+│   │   │   │   ├── menuController.js
+│   │   │   │   ├── platController.js
+│   │   │   ├── user/
+│   │   │   │   ├── commandeController.js
+│   │   │   │   ├── menuController.js
+│   │   │   │   ├── platController.js
+│   │   ├── db/
+│   │   │   └── db.js
+│   │   ├── middleware/
+│   │   │   ├── auth.js
+│   │   │   ├── isAdmin.js
+│   │   ├── models/
+│   │   │   ├── Ingredient.js
+│   │   │   ├── Menu.js
+│   │   │   ├── Plat.js
+│   │   │   ├── User.js
+│   │   ├── routes/
+│   │   │   ├── login.js
+│   │   │   ├── users.js
+│   │   │   ├── admin/
+│   │   │   │   ├── ingredients.js
+│   │   │   │   ├── menus.js
+│   │   │   │   ├── plats.js
+│   │   │   ├── user/
+│   │   │   │   ├── commandes.js
+│   │   │   │   ├── menus.js
+│   │   │   │   ├── plats.js
+│   ├── frontend/
+│   │   ├── fastfood/
+│   │   │   ├── components.json
+│   │   │   ├── eslint.config.js
+│   │   │   ├── index.html
+│   │   │   ├── package.json
+│   │   │   ├── README.md
+│   │   │   ├── tsconfig.app.json
+│   │   │   ├── tsconfig.json
+│   │   │   ├── tsconfig.node.json
+│   │   │   ├── vite.config.ts
+│   │   │   ├── public/
+│   │   │   │   └── vite.svg
+│   │   │   ├── src/
+│   │   │   │   ├── admin.css
+│   │   │   │   ├── App.css
+│   │   │   │   ├── App.tsx
+│   │   │   │   ├── AppRouter.tsx
+│   │   │   │   ├── index.css
+│   │   │   │   ├── main.tsx
+│   │   │   │   ├── user.css
+│   │   │   │   ├── vite-env.d.ts
+│   │   │   │   ├── assets/
+│   │   │   │   │   └── react.svg
+│   │   │   │   ├── components/
+│   │   │   │   │   ├── Footer.tsx
+│   │   │   │   │   ├── Header.tsx
+│   │   │   │   │   ├── Hero.tsx
+│   │   │   │   │   ├── ui/
+│   │   │   │   │   │   ├── Alert.tsx
+│   │   │   │   │   │   ├── button.tsx
+│   │   │   │   │   │   ├── Card.tsx
+│   │   │   │   │   │   ├── Input.tsx
+│   │   │   │   │   │   ├── Loader.tsx
+│   │   │   │   ├── lib/
+│   │   │   │   │   └── utils.ts
+│   │   │   │   ├── pages/
+│   │   │   │   │   ├── admin/
+│   │   │   │   │   │   ├── adminHome.css
+│   │   │   │   │   │   ├── AdminHome.tsx
+│   │   │   │   │   │   ├── ingredients.css
+│   │   │   │   │   │   ├── ingredients.tsx
+│   │   │   │   │   ├── auth/
+│   │   │   │   │   │   ├── auth.css
+│   │   │   │   │   │   ├── Login.tsx
+│   │   │   │   │   │   ├── Register.tsx
+│   │   │   │   │   ├── home/
+│   │   │   │   │   │   ├── home.css
+│   │   │   │   │   │   ├── Home.tsx
+│   │   │   │   │   ├── user/
+│   │   │   │   │   │   ├── UserHome.tsx
+│   │   │   │   ├── services/
+│   │   │   │   │   └── api.ts
+│   │   │   │   ├── utils/
+│   │   │   │   │   └── errorHandler.ts
+```
 
 
 ## Installation et commandes importantes
