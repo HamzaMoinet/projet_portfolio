@@ -4,13 +4,13 @@ const Ingredient = require('../../models/Ingredient');
 // Créer un plat
 exports.createPlat = async (req, res) => {
   try {
-    const { name, price, ingredients } = req.body;
+    const { name, price, type, ingredients } = req.body; // Ajout de type
     // On accepte maintenant un tableau d'IDs d'ingrédients
     const ingredientDocs = await Ingredient.find({ _id: { $in: ingredients } });
     if (ingredientDocs.length !== ingredients.length) {
       return res.status(400).json({ error: "Un ou plusieurs ingrédients n'existent pas." });
     }
-    const plat = new Plat({ name, price, ingredients });
+    const plat = new Plat({ name, price, type, ingredients }); // Ajout de type
     await plat.save();
     res.status(201).json(plat);
   } catch (err) {

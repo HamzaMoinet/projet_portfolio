@@ -1,15 +1,17 @@
-
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const commandeController = require("../../controllers/user/commandeController");
-const auth = require("../../middleware/auth");
-const isAdmin = require("../../middleware/isAdmin");
+const commandeController = require('../../controllers/user/commandeController');
 
+// Créer une commande
+router.post('/', commandeController.createCommande);
 
-// Route GET pour l'admin : voir toutes les commandes
-router.get("/admin", auth, isAdmin, commandeController.getAllCommandes);
+// Récupérer toutes les commandes
+router.get('/', commandeController.getCommandes);
 
-// Route POST pour créer une commande (user connecté)
-router.post("/", auth, commandeController.createCommande);
+// Modifier une commande
+router.put('/:id', commandeController.updateCommande);
+
+// Supprimer une commande
+router.delete('/:id', commandeController.deleteCommande);
 
 module.exports = router;

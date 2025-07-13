@@ -1,44 +1,77 @@
-// Créer une commande (user)
-const Plat = require("../../models/Plat");
+const Commande = require('../../models/Commande');
+const Plat = require('../../models/Plat');
 
+// Créer une commande
 exports.createCommande = async (req, res) => {
   try {
-    const { plats } = req.body;
-    if (!plats || !Array.isArray(plats) || plats.length === 0) {
-      return res.status(400).json({ message: "Aucun plat sélectionné." });
-    }
-    // Récupérer les plats et calculer le total
-    const platsDocs = await Plat.find({ _id: { $in: plats } });
-    if (platsDocs.length !== plats.length) {
-      return res.status(400).json({ message: "Un ou plusieurs plats sont invalides." });
-    }
-    const total = platsDocs.reduce((acc, plat) => acc + plat.price, 0);
-    const commande = new Commande({
-      user: req.user.id,
-      plats,
-      total,
-    });
+    const { userId, plats } = req.body;
+    // Calcul du total simple (sans réduction menu)
+    let total = 0;
+    const platsDetails = await Promise.all(plats.map(async (p) => {
+      const plat = await Plat.findById(p.platId);
+      if (!plat) throw new Error('Plat non trouvé');
+      total += plat.price;
+      return {
+        platId: p.platId,
+        nom: plat.name,
+        prix: plat.price,
+        type: plat.type,
+        customIngredients: p.customIngredients || []
+      };
+    }));
+    const commande = new Commande({ userId, plats: platsDetails, total });
     await commande.save();
     res.status(201).json(commande);
   } catch (err) {
-    res.status(500).json({ message: "Erreur lors de la création de la commande", error: err.message });
+    res.status(400).json({ error: err.message });
   }
 };
 
-const Commande = require("../../models/Commande");
-
-// Récupérer toutes les commandes (pour l'admin)
-exports.getAllCommandes = async (req, res) => {
+// Récupérer toutes les commandes
+exports.getCommandes = async (req, res) => {
   try {
-    const commandes = await Commande.find()
-      .populate("user", "firstName lastName")
-      .populate({
-        path: "plats",
-        select: "name price",
-      })
-      .sort({ createdAt: -1 });
-    res.status(200).json(commandes);
+    const commandes = await Commande.find().populate('userId', 'firstName lastName email').sort({ date: -1 });
+    res.json(commandes);
   } catch (err) {
-    res.status(500).json({ message: "Erreur lors de la récupération des commandes", error: err.message });
+    res.status(500).json({ error: err.message });
+  }
+};
+
+// Modifier une commande (ex : modifier les ingrédients d’un plat)
+exports.updateCommande = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { plats } = req.body;
+    // Calcul du total simple (sans réduction menu)
+    let total = 0;
+    const platsDetails = await Promise.all(plats.map(async (p) => {
+      const plat = await Plat.findById(p.platId);
+      if (!plat) throw new Error('Plat non trouvé');
+      total += plat.price;
+      return {
+        platId: p.platId,
+        nom: plat.name,
+        prix: plat.price,
+        type: plat.type,
+        customIngredients: p.customIngredients || []
+      };
+    }));
+    const commande = await Commande.findByIdAndUpdate(id, { plats: platsDetails, total }, { new: true });
+    if (!commande) return res.status(404).json({ error: 'Commande non trouvée' });
+    res.json(commande);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+};
+
+// Supprimer une commande
+exports.deleteCommande = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const commande = await Commande.findByIdAndDelete(id);
+    if (!commande) return res.status(404).json({ error: 'Commande non trouvée' });
+    res.json({ message: 'Commande supprimée' });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
   }
 };

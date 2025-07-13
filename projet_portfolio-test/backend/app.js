@@ -17,15 +17,18 @@ const ingredientRoutes = require('./routes/admin/ingredients');
 const platRoutes = require('./routes/admin/plats');
 const loginRoutes = require('./routes/login');
 const commandesRoutes = require('./routes/user/commandes');
+const userPlatsRoutes = require('./routes/user/plats');
 
 
 app.use('/api/users', userRoutes);
 app.use('/api/login', loginRoutes);
+app.use('/api/user/plats', userPlatsRoutes); // Route publique pour lire les plats côté user
 // Protéger les routes admin avec auth + isAdmin
 app.use('/api/admin/menus', auth, isAdmin, menuRoutes);
 app.use('/api/admin/ingredients', auth, isAdmin, ingredientRoutes);
 app.use('/api/admin/plats', auth, isAdmin, platRoutes);
-app.use('/api/commandes', commandesRoutes); // Ajout des routes commandes (admin inclus)
+app.use('/api/commandes', commandesRoutes); // Route commandes user
+app.use('/api/admin/commandes', require('./routes/admin/commandes')); // Route commandes admin
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 module.exports = app;
