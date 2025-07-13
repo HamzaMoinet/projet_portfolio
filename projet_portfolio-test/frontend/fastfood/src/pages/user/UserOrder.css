@@ -1,0 +1,209 @@
+/* Styles pour la page de test de commande utilisateur */
+
+
+.user-commande-fullpage {
+  min-height: 100vh;
+  width: 100vw;
+  background: #e65100;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  overflow-y: auto;
+  z-index: 1;
+  padding-top: 200px; /* Espace pour le header fixe */
+}
+
+.user-commande-container {
+  background: #e65100;
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+  padding: 24px;
+  padding-top: 80px;
+}
+
+.user-commande-list {
+  flex: 1;
+}
+
+.user-commande-list h2 {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+.user-commande-section {
+  margin-bottom: 32px;
+}
+
+.user-commande-section h3 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.user-commande-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+}
+
+.user-commande-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+.user-commande-card img {
+  width: 100%;
+  border-radius: 12px;
+  margin-bottom: 8px;
+}
+
+.user-commande-card h3 {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.user-commande-card .price {
+  color: #000000;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.user-commande-card .ingredients {
+  font-size: 13px;
+  color: #000000;
+  margin-bottom: 8px;
+}
+
+.user-commande-card .add-btn {
+  background: #222;
+  color: #fff;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.user-commande-cart {
+  width: 320px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  padding: 24px;
+}
+
+.user-commande-cart h3 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.user-commande-cart .empty {
+  color: #888;
+}
+
+.user-commande-cart ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.user-commande-cart li {
+  margin-bottom: 12px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 8px;
+}
+
+.user-commande-cart .cart-remove-btn {
+  background: #fff;
+  color: #E74C3C;
+  border: 1px solid #E74C3C;
+  border-radius: 6px;
+  padding: 2px 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.user-commande-cart .removed {
+  font-size: 13px;
+  color: #888;
+  margin-top: 4px;
+}
+
+.user-commande-cart .total {
+  font-weight: 700;
+  font-size: 17px;
+}
+
+/* Modale de personnalisation */
+.user-commande-modal-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #0008;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-commande-modal {
+  background: #fff;
+  border-radius: 16px;
+  padding: 32px;
+  min-width: 320px;
+  max-width: 400px;
+}
+
+.user-commande-modal h2 {
+  font-weight: 700;
+  font-size: 20px;
+  margin-bottom: 16px;
+}
+
+.user-commande-modal .ingredient-list label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.user-commande-modal .ingredient-list span {
+  margin-left: 8px;
+}
+
+.user-commande-modal .allergen {
+  color: #E74C3C;
+  font-weight: 600;
+  margin-left: 8px;
+}
+
+.user-commande-modal .modal-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+.user-commande-modal .cancel-btn {
+  background: #888;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 18px;
+  font-weight: 600;
+}
+
+.user-commande-modal .validate-btn {
+  background: #ff6600;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 18px;
+  font-weight: 600;
+}

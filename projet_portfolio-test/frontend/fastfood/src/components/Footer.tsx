@@ -1,7 +1,19 @@
 import React from "react";
 
 const Footer = () => (
-  <footer className="bg-yellow-400 text-center py-4 mt-8 text-red-700 font-semibold">
+  <footer
+    style={{
+      background: "#ffc400",
+      color: "#fff",
+      textAlign: "center",
+      padding: "24px 0",
+      margin: 0,
+      fontWeight: 600,
+      fontSize: "1rem",
+      border: "none",
+      boxShadow: "none",
+    }}
+  >
     © {new Date().getFullYear()} FastFood. Tous droits réservés.
   </footer>
 );

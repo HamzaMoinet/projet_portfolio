@@ -4,7 +4,16 @@ import { useNavigate } from "react-router-dom";
 const HeaderAdmin = () => {
   const navigate = useNavigate();
   return (
-    <header className="bg-[#030303] shadow-md py-4 px-8 flex items-center justify-between">
+    <header
+      className="bg-[#030303] shadow-md py-4 px-8 flex items-center justify-between"
+      style={{
+        position: "fixed",
+        top: 0,
+        left: 0,
+        width: "100vw",
+        zIndex: 100,
+      }}
+    >
       <div className="flex items-center gap-2">
         <button
           onClick={() => navigate("/admin")}
@@ -15,16 +24,31 @@ const HeaderAdmin = () => {
         </button>
       </div>
       <nav className="flex gap-4">
-        <a href="/admin/ingredients" className="bg-white text-[#e65100] px-3 py-1 rounded hover:bg-gray-100 font-semibold">Ingrédients</a>
-        <a href="/admin/plats" className="bg-white text-[#e65100] px-3 py-1 rounded hover:bg-gray-100 font-semibold">Plats</a>
-        <a href="/admin/commandes" className="bg-white text-[#e65100] px-3 py-1 rounded hover:bg-gray-100 font-semibold">Commandes</a>
+        <a
+          href="/admin/ingredients"
+          className="bg-white text-[#e65100] px-3 py-2 rounded hover:bg-gray-100 font-semibold"
+        >
+          Ingrédients
+        </a>
+        <a
+          href="/admin/plats"
+          className="bg-white text-[#e65100] px-3 py-2 rounded hover:bg-gray-100 font-semibold"
+        >
+          Plats
+        </a>
+        <a
+          href="/admin/commandes"
+          className="bg-white text-[#e65100] px-3 py-2 rounded hover:bg-gray-100 font-semibold"
+        >
+          Commandes
+        </a>
         <button
           onClick={() => {
             localStorage.removeItem("token");
             navigate("/");
           }}
           className="bg-white text-[#e65100] px-3 py-1 rounded hover:bg-gray-100 font-semibold border-none cursor-pointer"
-		  style={{ backgroundColor: "#ffffff" }}
+          style={{ backgroundColor: "#ffffff" }}
         >
           Déconnexion
         </button>

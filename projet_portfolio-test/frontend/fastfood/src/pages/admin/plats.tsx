@@ -14,13 +14,16 @@ interface Plat {
   _id: string;
   name: string;
   price: number;
+  type: string;
   ingredients: Ingredient[];
 }
 
-
 const PlatsPage = () => {
+  // Pour le bloc édition séparé
+  const [editType, setEditType] = useState<string>("");
   const [name, setName] = useState("");
   const [price, setPrice] = useState<number | undefined>(undefined);
+  const [type, setType] = useState<string>("");
   const [ingredients, setIngredients] = useState<Ingredient[]>([]);
   const [selectedIngredients, setSelectedIngredients] = useState<string[]>([]);
   const [message, setMessage] = useState("");
@@ -73,12 +76,13 @@ const PlatsPage = () => {
     try {
       await axios.post(
         "http://localhost:3001/api/admin/plats",
-        { name, price, ingredients: selectedIngredients },
+        { name, price, type, ingredients: selectedIngredients },
         { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
       );
       setMessage("Plat créé avec succès !");
       setName("");
       setPrice(undefined);
+      setType("");
       setSelectedIngredients([]);
       fetchPlats();
       setTimeout(() => setMessage(""), 2500);
@@ -103,6 +107,7 @@ const PlatsPage = () => {
     setEditId(plat._id);
     setEditName(plat.name);
     setEditPrice(plat.price);
+    setEditType(plat.type || "");
     setEditIngredients(plat.ingredients.map(ing => ing._id));
   };
 
@@ -112,7 +117,7 @@ const PlatsPage = () => {
     try {
       await axios.put(
         `http://localhost:3001/api/admin/plats/${editId}`,
-        { name: editName, price: editPrice, ingredients: editIngredients },
+        { name: editName, price: editPrice, type: editType, ingredients: editIngredients },
         { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
       );
       setEditId(null);
@@ -125,7 +130,7 @@ const PlatsPage = () => {
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       <Header />
-      <main style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'flex-start', width: '100%' }}>
+      <main style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'flex-start', width: '100%', paddingTop: "72px" }}>
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-start', width: '100%', maxWidth: 900, minHeight: '50vh', gap: "2rem", margin: '32px auto' }}>
           {/* Bloc POST */}
           <div style={{ width: '100%', maxWidth: 400 }}>
@@ -138,6 +143,16 @@ const PlatsPage = () => {
               <div>
                 <label htmlFor="price" style={{ display: 'block', marginBottom: 8 }}>Prix (€)</label>
                 <input id="price" type="number" step="0.01" value={price === undefined ? '' : price} onChange={e => setPrice(e.target.value === '' ? undefined : Number(e.target.value))} required min={0} style={{ width: '100%', padding: 8, borderRadius: 6, border: '1px solid #ccc' }} />
+              </div>
+              <div>
+                <label htmlFor="type" style={{ display: 'block', marginBottom: 8 }}>Type de plat</label>
+                <select id="type" value={type} onChange={e => setType(e.target.value)} required style={{ width: '100%', padding: 8, borderRadius: 6, border: '1px solid #ccc' }}>
+                  <option value="">Sélectionner le type</option>
+                  <option value="burger">Burger</option>
+                  <option value="frites">Frites</option>
+                  <option value="boisson">Boisson</option>
+                  <option value="autre">Autre</option>
+                </select>
               </div>
               <div>
                 <label style={{ display: 'block', marginBottom: 8 }}>Ingrédients</label>
@@ -168,6 +183,58 @@ const PlatsPage = () => {
               </button>
             </form>
           </div>
+          {/* Bloc édition séparé */}
+          {editId && (
+            <div style={{ width: '100%', maxWidth: 400 }}>
+              <h2 className="text-xl font-bold text-orange-600">Modifier un plat</h2>
+              <form onSubmit={handleUpdate} style={{ background: '#fff', padding: 32, borderRadius: 16, boxShadow: '0 4px 24px rgba(1, 13, 24, 0.08)', minWidth: 320, maxWidth: 400, display: 'flex', flexDirection: 'column', gap: 24 }}>
+                <div>
+                  <label htmlFor="editName" style={{ display: 'block', marginBottom: 8 }}>Nom du plat</label>
+                  <input id="editName" type="text" value={editName} onChange={e => setEditName(e.target.value)} required style={{ width: '100%', padding: 8, borderRadius: 6, border: '1px solid #ccc' }} />
+                </div>
+                <div>
+                  <label htmlFor="editPrice" style={{ display: 'block', marginBottom: 8 }}>Prix (€)</label>
+                  <input id="editPrice" type="number" step="0.01" value={editPrice === undefined ? '' : editPrice} onChange={e => setEditPrice(e.target.value === '' ? undefined : Number(e.target.value))} required min={0} style={{ width: '100%', padding: 8, borderRadius: 6, border: '1px solid #ccc' }} />
+                </div>
+                <div>
+                  <label htmlFor="editType" style={{ display: 'block', marginBottom: 8 }}>Type de plat</label>
+                  <select id="editType" value={editType} onChange={e => setEditType(e.target.value)} required style={{ width: '100%', padding: 8, borderRadius: 6, border: '1px solid #ccc' }}>
+                    <option value="">Sélectionner le type</option>
+                    <option value="burger">Burger</option>
+                    <option value="frites">Frites</option>
+                    <option value="boisson">Boisson</option>
+                    <option value="autre">Autre</option>
+                  </select>
+                </div>
+                <div>
+                  <label style={{ display: 'block', marginBottom: 8 }}>Ingrédients</label>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, maxHeight: 120, overflowY: 'auto' }}>
+                    {ingredients.map(ing => (
+                      <label key={ing._id} style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+                        <input
+                          type="checkbox"
+                          value={ing._id}
+                          checked={editIngredients.includes(ing._id)}
+                          onChange={e => {
+                            if (e.target.checked) {
+                              setEditIngredients([...editIngredients, ing._id]);
+                            } else {
+                              setEditIngredients(editIngredients.filter(id => id !== ing._id));
+                            }
+                          }}
+                        />
+                        {ing.name}
+                      </label>
+                    ))}
+                  </div>
+                </div>
+                <div style={{ display: 'flex', gap: 8 }}>
+                  <button type="submit" style={{ width: '100%', background: '#3081D1', color: '#fff', padding: 12, border: 'none', borderRadius: 8, fontWeight: 600, fontSize: 16, cursor: 'pointer' }}>Valider</button>
+                  <button type="button" onClick={() => setEditId(null)} style={{ width: '100%', background: '#fff', color: '#E74C3C', border: '1px solid #E74C3C', borderRadius: 8, fontWeight: 600, fontSize: 16, cursor: 'pointer' }}>Annuler</button>
+                </div>
+              </form>
+            </div>
+          )}
           {/* Bloc GET/PUT/DEL */}
           <div style={{ width: '100%', maxWidth: 400 }}>
             <h2 className="text-xl font-bold text-red-600">Liste des plats</h2>
@@ -179,53 +246,20 @@ const PlatsPage = () => {
                 <li>Aucun plat.</li>
               ) : plats.map(plat => (
                 <li key={plat._id} style={{ padding: 8, borderBottom: '1px solid #eee', display: 'flex', flexDirection: 'column', gap: 4 }}>
-                  {editId === plat._id ? (
-                    <form onSubmit={handleUpdate} style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-                      <input type="text" value={editName} onChange={e => setEditName(e.target.value)} required style={{ padding: 4, borderRadius: 4, border: '1px solid #ccc' }} />
-                      <input type="number" step="0.01" value={editPrice === undefined ? '' : editPrice} onChange={e => setEditPrice(e.target.value === '' ? undefined : Number(e.target.value))} required min={0} style={{ padding: 4, borderRadius: 4, border: '1px solid #ccc' }} />
-                      <div>
-                        <label style={{ display: 'block', marginBottom: 8 }}>Ingrédients</label>
-                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-                          {ingredients.map(ing => (
-                            <label key={ing._id} style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-                              <input
-                                type="checkbox"
-                                value={ing._id}
-                                checked={editIngredients.includes(ing._id)}
-                                onChange={e => {
-                                  if (e.target.checked) {
-                                    setEditIngredients([...editIngredients, ing._id]);
-                                  } else {
-                                    setEditIngredients(editIngredients.filter(id => id !== ing._id));
-                                  }
-                                }}
-                              />
-                              {ing.name}
-                            </label>
-                          ))}
-                        </div>
-                      </div>
-                      <div style={{ display: 'flex', gap: 8 }}>
-                        <button type="submit" style={{ background: '#3081D1', color: '#fff', border: 'none', borderRadius: 6, padding: '4px 12px', cursor: 'pointer' }}>Valider</button>
-                        <button type="button" onClick={() => setEditId(null)} style={{ background: '#fff', color: '#E74C3C', border: '1px solid #E74C3C', borderRadius: 6, padding: '4px 12px', cursor: 'pointer' }}>Annuler</button>
-                      </div>
-                    </form>
-                  ) : (
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                      <span>
-                        <strong>{plat.name}</strong> - {plat.price} €<br />
-                        {plat.ingredients && plat.ingredients.length > 0 && (
-                          <span style={{ color: '#b91c1c', fontSize: 13, marginLeft: 8 }}>
-                            [Ingrédients: {plat.ingredients.map(ing => ing.name).join(", ")}]
-                          </span>
-                        )}
-                      </span>
-                      <div style={{ display: 'flex', gap: 8 }}>
-                        <button onClick={() => handleEdit(plat)} style={{ background: '#fff', color: '#3081D1', border: '1px solid #3081D1', borderRadius: '50%', width: 28, height: 28, fontSize: 16, fontWeight: 700, cursor: 'pointer', lineHeight: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }} title="Modifier">✎</button>
-                        <button onClick={() => handleDelete(plat._id)} style={{ background: '#fff', color: '#E74C3C', border: 'none', borderRadius: '50%', width: 28, height: 28, fontSize: 20, fontWeight: 700, cursor: 'pointer', lineHeight: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }} title="Supprimer">×</button>
-                      </div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <span>
+                      <strong>{plat.name}</strong> - {plat.price} €<br />
+                      {plat.ingredients && plat.ingredients.length > 0 && (
+                        <span style={{ color: '#b91c1c', fontSize: 13, marginLeft: 8 }}>
+                          [Ingrédients: {plat.ingredients.map(ing => ing.name).join(", ")}]
+                        </span>
+                      )}
+                    </span>
+                    <div style={{ display: 'flex', gap: 8 }}>
+                      <button onClick={() => handleEdit(plat)} style={{ background: '#fff', color: '#3081D1', border: '1px solid #3081D1', borderRadius: '50%', width: 28, height: 28, fontSize: 16, fontWeight: 700, cursor: 'pointer', lineHeight: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }} title="Modifier">✎</button>
+                      <button onClick={() => handleDelete(plat._id)} style={{ background: '#fff', color: '#E74C3C', border: 'none', borderRadius: '50%', width: 28, height: 28, fontSize: 20, fontWeight: 700, cursor: 'pointer', lineHeight: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }} title="Supprimer">×</button>
                     </div>
-                  )}
+                  </div>
                 </li>
               ))}
             </ul>

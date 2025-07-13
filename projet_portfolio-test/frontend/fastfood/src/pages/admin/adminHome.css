@@ -5,6 +5,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-top: 72px; /* Espace pour le header fixe */
 }
 
 .admin-title {

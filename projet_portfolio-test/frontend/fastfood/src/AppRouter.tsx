@@ -6,10 +6,10 @@ import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register"; // <-- Ajout ici
 import IngredientsPage from "./pages/admin/ingredients";
 import PlatsPage from "./pages/admin/plats";
-import AdminCommandes from "./pages/admin/commandes";
 import Menus_home from "./pages/home/plats";
-import Menususer from "./pages/user/plats"; // <-- Ajout ici
-
+import Menususer from "./pages/user/plats";
+import UserOrders from "./pages/user/UserOrders";
+import CommandesAdmin from "./pages/admin/CommandesAdmin"; // <-- Importation du nouveau composant
 const AppRouter = () => (
   <BrowserRouter>
     <Routes>
@@ -21,12 +21,13 @@ const AppRouter = () => (
       {/* Pages utilisateur */}
       <Route path="/user" element={<UserHome />} />
       <Route path="/user/menus" element={<Menususer />} />
+      <Route path="/user/commandes" element={<UserOrders />} />
 
       {/* Pages admin */}
       <Route path="/admin" element={<AdminHome />} />
       <Route path="/admin/ingredients" element={<IngredientsPage />} />
       <Route path="/admin/plats" element={<PlatsPage />} />
-      <Route path="/admin/commandes" element={<AdminCommandes />} />
+      <Route path="/admin/commandes" element={<CommandesAdmin />} /> {/* <-- Changement ici */}
     </Routes>
   </BrowserRouter>
 );

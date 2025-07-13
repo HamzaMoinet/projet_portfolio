@@ -8,7 +8,7 @@ const AdminHome = () => {
   return (
     <>
       <Header />
-      <main className="flex flex-col items-center py-8 gap-8 bg-gray-100 min-h-svh">
+      <main className="flex flex-col items-center py-8 gap-8 bg-gray-100 min-h-svh" style={{ paddingTop: "72px" }}>
         <h1 className="text-3xl font-bold text-blue-700 mb-4">Espace Administrateur</h1>
         <p className="text-lg text-gray-700 mb-4">Bienvenue sur le tableau de bord admin. Ici, vous pouvez gérer les menus, plats et commandes.</p>
         <div className="flex flex-wrap gap-8 justify-center">

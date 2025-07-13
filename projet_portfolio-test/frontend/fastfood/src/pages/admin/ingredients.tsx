@@ -75,7 +75,7 @@ const IngredientsPage = () => {
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       <Header />
-      <main style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'flex-start', width: '100%' }}>
+      <main style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'flex-start', width: '100%', paddingTop: "72px" }}>
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-start', width: '100%', maxWidth: 900, minHeight: '50vh', gap: "2rem", margin: '32px auto' }}>
           <div style={{ width: '100%', maxWidth: 400 }}>
             <h2 className="text-xl font-bold text-red-600">Créer un ingrédient</h2>
