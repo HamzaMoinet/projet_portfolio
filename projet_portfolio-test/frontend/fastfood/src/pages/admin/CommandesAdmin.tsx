@@ -15,10 +15,15 @@ interface PlatCommande {
 
 interface Commande {
   _id: string;
-  user: { firstName: string; lastName: string };
+  user: {
+    _id?: string;
+    firstName?: string;
+    lastName?: string;
+    email?: string;
+  } | null;
   plats: PlatCommande[];
-  createdAt: string;
-  status: string;
+  total: number;
+  date: string;
 }
 
 const CommandesAdmin = () => {
@@ -39,9 +44,9 @@ const CommandesAdmin = () => {
   }, []);
 
   return (
-    <>
+    <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
       <Header />
-      <main style={{ paddingTop: "72px" }}>
+      <main style={{ paddingTop: "72px", flex: 1 }}>
         <div style={{ maxWidth: 1100, margin: "32px auto", padding: 24 }}>
           <h2 style={{ fontSize: 24, fontWeight: 700, marginBottom: 24 }}>Commandes utilisateurs</h2>
           {loading ? (
@@ -64,9 +69,9 @@ const CommandesAdmin = () => {
                 {commandes.map(cmd => (
                   <tr key={cmd._id} style={{ borderBottom: "1px solid #eee" }}>
                     <td style={{ padding: 12 }}>
-                      {cmd.userId && typeof cmd.userId === "object" && cmd.userId.email
-                        ? cmd.userId.email
-                        : typeof cmd.userId === "string" ? cmd.userId : "Utilisateur inconnu"}
+                      {cmd.user && cmd.user.firstName && cmd.user.lastName
+                        ? `${cmd.user.firstName} ${cmd.user.lastName}`
+                        : typeof cmd.user === "string" ? cmd.user : "Utilisateur inconnu"}
                     </td>
                     <td style={{ padding: 12 }}>
                       <ul style={{ margin: 0, padding: 0, listStyle: "none" }}>
@@ -90,7 +95,7 @@ const CommandesAdmin = () => {
         </div>
       </main>
       <Footer />
-    </>
+    </div>
   );
 };
 

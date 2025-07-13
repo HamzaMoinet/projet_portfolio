@@ -93,10 +93,10 @@ const UserCommandeTest = () => {
   };
 
 
-  return (
-    <>
+return (
+    <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
       <Header />
-      <div className="user-commande-container">
+      <div className="user-commande-container" style={{ flex: 1 }}>
         {/* Liste des plats triés par type */}
         <div className="user-commande-list">
           <h2>Menus</h2>
@@ -107,7 +107,6 @@ const UserCommandeTest = () => {
               <div className="user-commande-cards">
                 {platsType.map(plat => (
                   <div key={plat._id} className="user-commande-card">
-                    <img src={plat.image || "https://via.placeholder.com/180x100?text=Plat"} alt={plat.name} />
                     <h3>{plat.name}</h3>
                     <div className="price">{plat.price.toFixed(2)} €</div>
                     <div className="ingredients">
@@ -213,7 +212,7 @@ const UserCommandeTest = () => {
         </div>
       )}
       <Footer />
-    </>
+    </div>
   );
 };
 
